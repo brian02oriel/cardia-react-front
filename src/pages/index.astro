@@ -1,12 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import Navbar from '../components/Navbar';
 import "../styles/global.css";
 
 ---
 
 <Layout title="Welcome to Astro.">
-	<main>
-		<h1> Astro Tailwind Test </h1>
+	<main class="min-h-screen flex flex-col">
+		<Navbar/>
+		<div class="flex-grow flex items-center justify-center">
+			<h1> Astro Tailwind Test </h1>
+		</div>
+		<footer> testing footer </footer>
 	</main>
 </Layout>
