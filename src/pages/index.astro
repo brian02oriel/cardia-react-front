@@ -2,16 +2,62 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Navbar from '../components/Navbar';
+import NavCard, { type NavCardProps } from '../components/NavCard';
 import "../styles/global.css";
 
+const navCardItems: NavCardProps[] = [
+	{
+	 type: 'new',
+	 label: 'Nuevo',
+	 height: '20rem',
+	 width: '20rem',
+	 iconHeight: '65%',
+	 iconWidth: '65%'
+	},
+	{
+	 type: 'database',
+	 label: 'Registros',
+	 height: '20rem',
+	 width: '22rem',
+	 iconHeight: '65%',
+	 iconWidth: '65%'
+	},
+	{
+	 type: 'chart',
+	 label: 'Graficas',
+	 height: '20rem',
+	 width: '22rem',
+	 iconHeight: '65%',
+	 iconWidth: '65%'
+	},
+	{
+	 type: 'settings',
+	 label: 'Configuracion',
+	 height: '20rem',
+	 width: '22rem',
+	 iconHeight: '65%',
+	 iconWidth: '65%'
+	}
+]
 ---
 
 <Layout title="Welcome to Astro.">
-	<main class="min-h-screen flex flex-col">
+	<main class="min-h-screen grid grid-rows-[0.25fr_0.5fr_2.5fr_0.75fr]">
 		<Navbar/>
-		<div class="flex-grow flex items-center justify-center">
-			<h1> Astro Tailwind Test </h1>
+		<div class="p-4">
+			<div class="flex items-start justify-start text-contrast">
+				<h1> Bienvenido Brian Nieto</h1>
+			</div>
 		</div>
-		<footer> testing footer </footer>
+			<div class="flex space-x-28 items-center justify-center">
+				{
+					navCardItems.map(({type, label, height, width, iconHeight, iconWidth})=> (
+						<NavCard type={type} label={label} height={height} width={width} iconHeight={iconHeight} iconWidth={iconWidth}/>
+					))
+				}
+			</div>
+			<footer class="flex items-center justify-center">
+				<h3> Version 1.0.0 </h3>
+			</footer>
 	</main>
 </Layout>

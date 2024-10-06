@@ -11,7 +11,7 @@ export default {
 				fontInvert: '#FCFCFC'
 			},
 			borderRadius: {
-				global: '15px'
+				custom: '15px'
 			}
 		},
 	},
