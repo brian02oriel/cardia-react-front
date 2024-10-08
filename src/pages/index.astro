@@ -9,55 +9,56 @@ const navCardItems: NavCardProps[] = [
 	{
 	 type: 'new',
 	 label: 'Nuevo',
-	 height: '20rem',
-	 width: '20rem',
+	 height: '80%',
+	 width: '80%',
 	 iconHeight: '65%',
 	 iconWidth: '65%'
 	},
 	{
 	 type: 'database',
 	 label: 'Registros',
-	 height: '20rem',
-	 width: '22rem',
+	 height: '80%',
+	 width: '80%',
 	 iconHeight: '65%',
 	 iconWidth: '65%'
 	},
 	{
 	 type: 'chart',
 	 label: 'Graficas',
-	 height: '20rem',
-	 width: '22rem',
+	 height: '80%',
+	 width: '80%',
 	 iconHeight: '65%',
 	 iconWidth: '65%'
 	},
 	{
 	 type: 'settings',
 	 label: 'Configuracion',
-	 height: '20rem',
-	 width: '22rem',
+	 height: '80%',
+	 width: '80%',
 	 iconHeight: '65%',
 	 iconWidth: '65%'
 	}
 ]
+//grid grid-rows-[0.25fr_0.5fr_2.5fr_0.75fr]
 ---
 
 <Layout title="Welcome to Astro.">
-	<main class="min-h-screen grid grid-rows-[0.25fr_0.5fr_2.5fr_0.75fr]">
+	<main class="h-screen">
 		<Navbar/>
-		<div class="p-4">
-			<div class="flex items-start justify-start text-contrast">
+		<header class="p-4 h-1/4">
+			<div class="container mx-auto"> 
 				<h1> Bienvenido Brian Nieto</h1>
 			</div>
-		</div>
-			<div class="flex space-x-28 items-center justify-center">
-				{
-					navCardItems.map(({type, label, height, width, iconHeight, iconWidth})=> (
-						<NavCard type={type} label={label} height={height} width={width} iconHeight={iconHeight} iconWidth={iconWidth}/>
-					))
-				}
-			</div>
-			<footer class="flex items-center justify-center">
-				<h3> Version 1.0.0 </h3>
-			</footer>
+		</header>
+		<main class="container mx-auto p-8 xs:p-4 flex flex-row sm:gap-12 gap-8 h-1/2">
+			{
+				navCardItems.map(({type, label, height, width, iconHeight, iconWidth})=> (
+					<NavCard type={type} label={label} height={height} width={width} iconHeight={iconHeight} iconWidth={iconWidth}/>
+				))
+			}
+		</main>
+		<footer class="flex items-center justify-center">
+			<h3> Version 1.0.0 </h3>
+		</footer>
 	</main>
 </Layout>
