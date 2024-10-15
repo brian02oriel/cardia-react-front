@@ -7,11 +7,17 @@ export default {
 				main: '#FCFCFC',
 				secondary: '#E4E4E4',
 				contrast: '#001234',
+				info: '#0059FF',
+				success: '#007700',
+				error: '#C50000',
 				font: '#1C1C1C',
 				fontInvert: '#FCFCFC'
 			},
 			borderRadius: {
 				custom: '15px'
+			},
+			fontSize: {
+				base: '32px'
 			}
 		},
 	},
