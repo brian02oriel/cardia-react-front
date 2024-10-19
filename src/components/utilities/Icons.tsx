@@ -16,3 +16,11 @@ export function Chart(props: SVGProps<SVGSVGElement>) {
 export function Settings(props: SVGProps<SVGSVGElement>) {
 	return (<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 28 28" {...props}><path fill="currentColor" d="M16.693 2.311A13 13 0 0 0 14.013 2q-1.384.016-2.704.311a.92.92 0 0 0-.716.8l-.209 1.877a1.707 1.707 0 0 1-2.371 1.376l-1.72-.757a.92.92 0 0 0-1.043.214a12.06 12.06 0 0 0-2.709 4.667a.92.92 0 0 0 .334 1.017l1.527 1.125a1.7 1.7 0 0 1 0 2.74l-1.527 1.128a.92.92 0 0 0-.334 1.016a12.1 12.1 0 0 0 2.707 4.672a.92.92 0 0 0 1.043.215l1.728-.759a1.7 1.7 0 0 1 1.526.086c.466.27.777.745.838 1.281l.208 1.877a.92.92 0 0 0 .702.796a11.7 11.7 0 0 0 5.413 0a.92.92 0 0 0 .702-.796l.208-1.88a1.693 1.693 0 0 1 2.366-1.37l1.727.759a.92.92 0 0 0 1.043-.215a12.1 12.1 0 0 0 2.707-4.667a.92.92 0 0 0-.334-1.017L23.6 15.37a1.7 1.7 0 0 1-.001-2.74l1.525-1.127a.92.92 0 0 0 .333-1.016a12.06 12.06 0 0 0-2.708-4.667a.92.92 0 0 0-1.043-.214l-1.72.757a1.7 1.7 0 0 1-.68.144a1.7 1.7 0 0 1-1.688-1.518l-.21-1.879a.92.92 0 0 0-.714-.799M14 18a4 4 0 1 1 0-8a4 4 0 0 1 0 8"></path></svg>);
 }
+
+export function Back(props: SVGProps<SVGSVGElement>) {
+	return (<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}><path fill="currentColor" d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6z"></path></svg>);
+}
+
+export function Logout(props: SVGProps<SVGSVGElement>) {
+	return (<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h7v2H5v14h7v2zm11-4l-1.375-1.45l2.55-2.55H9v-2h8.175l-2.55-2.55L16 7l5 5z"></path></svg>);
+}

@@ -1,9 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/navigation/Navbar';
 import NavCard, { type NavCardProps } from '../components/navigation/NavCard';
-import Button  from '../components/utilities/Button';
 import "../styles/global.css";
+import Header from '../components/navigation/Header';
 
 const navCardItems: NavCardProps[] = [
 	{
@@ -32,25 +31,10 @@ const navCardItems: NavCardProps[] = [
 	}
 ]
 
-function onClick() {
-  alert('Clicked!')
-}
-
-console.log(typeof onClick);
-
 ---
 <Layout title="Welcome to Astro.">
 	<main class="flex flex-col h-screen min-w-min min-h-min">
-		<Navbar/>
-		<header class="p-4 flex flex-col">
-			<div class="container mx-auto"> 
-				<h1> Bienvenido Brian Nieto</h1>
-			</div>
-			<div>
-				<Button onClick={onClick} label="Click me" type="info"  client:load/>
-			</div>
-
-		</header>
+		<Header title='Bienvenido Brian Nieto' isSecondary/>
 		<main class="container my-auto mx-auto p-8 xs:p-4 flex sm:flex-col md:flex-row lg:flex-row flex-wrap md:flex-nowrap lg:flex-nowrap gap-8 sm:gap-8
 		 md:gap-12 lg:gap-16">
 			{
