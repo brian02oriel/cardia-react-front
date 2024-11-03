@@ -26,5 +26,18 @@ h1 {
   small {
     @apply text-sm md:text-base;
   }
+
+  .severity-high {
+    @apply bg-error;
+    @apply text-main;
+  }
+
+  .severity-medium {
+    @apply text-warning;
+  }
+
+  .severity-low {
+    @apply text-success;
+  }
   
   

@@ -117,7 +117,7 @@ const NewForm = () => {
                                         focus:ring-blue-500 focus:border-info'/>
             </div>
             <div className='mb-5'>
-                <label htmlFor='id' className='block mb-2 text-sm font-medium'> Identification </label>
+                <label htmlFor='id' className='block mb-2 text-sm font-medium'> Identificación </label>
                 <input type='text' {...register('id', {
                                 required: true
                             })} 
@@ -137,7 +137,7 @@ const NewForm = () => {
                                         focus:ring-blue-500 focus:border-info'/>
             </div>
             <div className='mb-5'>
-                <label htmlFor='symptoms' className='block mb-2 text-sm font-medium'> Sintomas </label>
+                <label htmlFor='symptoms' className='block mb-2 text-sm font-medium'> Síntomas </label>
                 <MultiSelect options={options} placeholder='Seleccione sintomas' {...register('symptoms', {
                                 required: true
                             })} />

@@ -9,11 +9,13 @@ export default {
 				contrast: '#001234',
 				info: '#0059FF',
 				success: '#007700',
+				warning: '#E0BA00',
 				error: '#C50000',
 				mainHover: '#B3B3B3',
 				contrastHover: '#001F59',
 				infoHover: '#0042BE',
 				successHover: '#006200',
+				warningHover: '#9D850A',
 				errorHover: '#A10000',
 				font: '#1C1C1C',
 				fontInvert: '#FCFCFC'
