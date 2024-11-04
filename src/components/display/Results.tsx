@@ -1,75 +1,26 @@
 import React from 'react';
-import DiagnosticItem, { Severity, type DiagnosticItemProps } from './DiagnosticItem';
+import DiagnosticItem, { type ItemProps } from './Items';
+import Placeholder, { Types } from './Placeholder';
 
-interface ResultsProps {
-   name : string;
+
+export interface ResultsProps {
+   title : string
+   items: ItemProps[]
+   types: Types
 }
 
-const Results: React.FC<ResultsProps> = ({ name }) => {
-    const diagnosticItems: DiagnosticItemProps[] = [
-        {
-            name: 'Infarto Agudo del Miocardio',
-            code: 'IAM',
-            percentage: 40.9,
-            severity: Severity.HIGH
-        },
-        {
-            name: 'Infarto Agudo del Miocardio',
-            code: 'IAM',
-            percentage: 40.9,
-            severity: Severity.HIGH
-        },
-        {
-            name: 'Infarto Agudo del Miocardio',
-            code: 'IAM',
-            percentage: 40.9,
-            severity: Severity.HIGH
-        },
-        {
-            name: 'Embolia pulmonar aguda',
-            code: 'EPA',
-            percentage: 30.5,
-            severity: Severity.MEDIUM
-        },
-        {
-            name: 'Embolia pulmonar aguda',
-            code: 'EPA',
-            percentage: 30.5,
-            severity: Severity.MEDIUM
-        },
-        {
-            name: 'Pericarditis Aguda',
-            code: 'PA',
-            percentage: 10,
-            severity: Severity.LOW
-        },
-        {
-            name: 'Pericarditis Aguda',
-            code: 'PA',
-            percentage: 10,
-            severity: Severity.LOW
-        },
-        {
-            name: 'Pericarditis Aguda',
-            code: 'PA',
-            percentage: 10,
-            severity: Severity.LOW
-        },
-        {
-            name: 'Pericarditis Aguda',
-            code: 'PA',
-            percentage: 10,
-            severity: Severity.LOW
-        }
-    ]
+const Results: React.FC<ResultsProps> = ({ title, items, types }) => {
+
     return (
         <div className='w-auto'>
             <div className='mb-4'>
-                <h3>Resultados</h3>
+                <h4>{ title }</h4>
             </div>
-            <div className='max-h-dvh overflow-auto'>
+            <div className='max-h-56 border rounded-custom overflow-auto'>
                 {
-                    diagnosticItems.map((item)=> <DiagnosticItem {...item} key={item.code}/>)
+                   items?.length > 0 ? 
+                    items.map((item)=> <DiagnosticItem {...item} key={item.code}/>) :
+                    <Placeholder type={types}/>
                 }
             </div>
         </div>

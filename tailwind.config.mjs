@@ -18,7 +18,8 @@ export default {
 				warningHover: '#9D850A',
 				errorHover: '#A10000',
 				font: '#1C1C1C',
-				fontInvert: '#FCFCFC'
+				fontInvert: '#FCFCFC',
+				disabled: '#F2F2F2'
 			},
 			borderRadius: {
 				custom: '15px'

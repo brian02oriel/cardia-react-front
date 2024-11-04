@@ -1,8 +1,7 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
-import MultiSelect, { type MultiSelectOption } from './MultiSelect';
+import CustomSelect, { type CustomSelectOption } from './CustomSelect';
 
-const NewForm = () => {
+const Form = () => {
     const { 
         register, 
         handleSubmit, 
@@ -17,7 +16,7 @@ const NewForm = () => {
         console.log(data)
     })
 
-    const options: MultiSelectOption[] = [
+    const multiOptions: CustomSelectOption[] = [
         {
             value: {
                 code: 'olderThan65'
@@ -92,8 +91,17 @@ const NewForm = () => {
         },
 
     ]
+
+    const singleOptions: CustomSelectOption[] = [
+        {
+            value: {
+                code: 'chestPain',
+            },
+            label: 'Dolor de pecho'
+        },
+    ]
     return (
-        <form className='max-w-sm mx-auto' onSubmit={onSubmit}>
+        <form className='p-2 min-w-80 max-w-sm mx-auto' onSubmit={onSubmit}>
             <div className='mb-5'>
                 <label htmlFor='firstName' className='block mb-2 text-sm font-medium'> Nombre </label>
                 <input type='text' {...register('firstName', {
@@ -137,8 +145,15 @@ const NewForm = () => {
                                         focus:ring-blue-500 focus:border-info'/>
             </div>
             <div className='mb-5'>
+                <label htmlFor='differential' className='block mb-2 text-sm font-medium'> Diferencial </label>
+                <CustomSelect options={singleOptions} placeholder='Seleccione diferencial'  isDisabled={true} {...register('differential', {
+                                required: true,
+                                disabled: true
+                            })} />
+            </div>
+            <div className='mb-5'>
                 <label htmlFor='symptoms' className='block mb-2 text-sm font-medium'> Síntomas </label>
-                <MultiSelect options={options} placeholder='Seleccione sintomas' {...register('symptoms', {
+                <CustomSelect options={multiOptions} placeholder='Seleccione sintomas' isMulti={true} {...register('symptoms', {
                                 required: true
                             })} />
             </div>
@@ -149,4 +164,4 @@ const NewForm = () => {
     );
 };
 
-export default NewForm;
+export default Form;
