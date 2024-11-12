@@ -152,7 +152,7 @@ const Form = () => {
                             })} />
             </div>
             <div className='mb-5'>
-                <label htmlFor='symptoms' className='block mb-2 text-sm font-medium'> Síntomas </label>
+                <label htmlFor='symptoms' className='block mb-2 text-sm font-medium'> Factores de riesgo </label>
                 <CustomSelect options={multiOptions} placeholder='Seleccione sintomas' isMulti={true} {...register('symptoms', {
                                 required: true
                             })} />

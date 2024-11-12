@@ -27,7 +27,7 @@ const NavCard: React.FC<NavCardProps> = ({ icon, redirect, label, iconWidth, ico
                             transition-transform duration-300 ease-in-out transform cursor-pointer
                             focus:animate-pulse
                             hover:text-main hover:scale-105 hover:bg-contrast hover:shadow-xl hover:shadow-secondary 
-                            sm:w-36 lg:w-64 xl:w-80 sm:h-36 lg:h-64 xl:h-80'>
+                            sm:w-36 lg:w-64 xl:w-64 sm:h-36 lg:h-64 xl:h-80'>
                         { icon ? icons[icon] : '' }
                         <div>
                             <p>{label}</p>
