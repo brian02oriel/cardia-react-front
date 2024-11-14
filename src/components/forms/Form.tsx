@@ -18,75 +18,48 @@ const Form = () => {
 
     const multiOptions: CustomSelectOption[] = [
         {
-            value: {
-                code: 'olderThan65'
-            },
+            code: 'olderThan65',
             label: 'Persona mayor a 65 anos'
         },
         {
-            value: {
-                code: 'hypertension',
-                group: 'riskFactor'
-            },
+            code: 'hypertension',
             label: 'Sufre hipertension'
         },
         {
-            value: {
-                code: 'diabetes',
-                group: 'riskFactor'
-            },
+            code: 'diabetes',
             label: 'Sufre diabetes'
            
         },
         {
-            value: {
-                code: 'hyperlipidemia',
-                group: 'riskFactor'
-            },
+            code: 'hyperlipidemia',
             label: 'Hiperlipidemia'
         },
         {
-            value: {
-                code: 'smoker',
-                group: 'riskFactor'
-            },
+            code: 'smoker',
             label: 'Fumador'
         },
         {
-            value: {
-                code: 'historyOfHeartDisease',
-                group: 'riskFactor'
-            },
+            code: 'historyOfHeartDisease',
             label: 'Historial familiar de enfermedades cardiacas'
         },
         {
-            value: {
-                code: 'historyOfCoronaryStenosis',
-            },
+            code: 'historyOfCoronaryStenosis',
             label: 'Historial de Estenosis Coronaria (>=50%)'
         },
         {
-            value: {
-                code: 'anginaEpisodes',
-            },
+            code: 'anginaEpisodes',
             label: 'Al menos dos episodios de angina (en las ultimas 24h)'
         },
         {
-            value: {
-                code: 'aspirinUsage',
-            },
+            code: 'aspirinUsage',
             label: 'Uso de aspirina en los ultimos 7 dias'
         },
         {
-            value: {
-                code: 'segmentSTChanges',
-            },
+            code: 'segmentSTChanges',
             label: 'Desviacion/Cambio en el segmento ST (>=0.05 mV)'
         },
         {
-            value: {
-                code: 'necrosisMarkers',
-            },
+            code: 'necrosisMarkers',
             label: 'Marcadores cardiacos de necrosis (troponina o CK-MB)'
         },
 
@@ -94,9 +67,7 @@ const Form = () => {
 
     const singleOptions: CustomSelectOption[] = [
         {
-            value: {
-                code: 'chestPain',
-            },
+            code: 'chestPain',
             label: 'Dolor de pecho'
         },
     ]

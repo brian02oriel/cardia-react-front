@@ -2,15 +2,10 @@ import clsx from 'clsx';
 import React from 'react';
 import Select, { type ClassNamesConfig, type GroupBase, type StylesConfig } from 'react-select';
 
-interface OptionValueObject {
-        code: string
-        group?: 'riskFactor'
-}
 
 export interface CustomSelectOption {
-    value: OptionValueObject
+    code: string
     label: string
-
 }
 
 interface SelectProps {
