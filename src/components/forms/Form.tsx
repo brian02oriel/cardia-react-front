@@ -72,7 +72,7 @@ const Form = () => {
         },
     ]
     return (
-        <form className='p-2 min-w-80 max-w-sm mx-auto' onSubmit={onSubmit}>
+        <form className='p-2 min-w-80' onSubmit={onSubmit}>
             <div className='mb-5'>
                 <label htmlFor='firstName' className='block mb-2 text-sm font-medium'> Nombre </label>
                 <input type='text' {...register('firstName', {
@@ -129,7 +129,7 @@ const Form = () => {
                             })} />
             </div>
             <div className='flex justify-end'>
-                    <button type='submit' className='text-main hover:mainHover bg-success hover:bg-successHover focus:ring-4 focus:outline-none focus:ring-success font-medium rounded-custom text-sm px-5 py-2.5 text-center'> Enviar </button>
+                <button type='submit' className='text-main hover:mainHover bg-success hover:bg-successHover focus:ring-4 focus:outline-none focus:ring-success font-medium rounded-custom text-sm px-5 py-2.5 text-center min-w-36'> Enviar </button>
             </div>
         </form>
     );

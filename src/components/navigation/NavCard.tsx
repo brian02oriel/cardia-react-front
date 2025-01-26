@@ -23,7 +23,7 @@ const NavCard: React.FC<NavCardProps> = ({ icon, redirect, label, iconWidth, ico
         <>
             <a href={redirect}>
                 <div className='flex flex-col items-center justify-center 
-                            p-4 shadow-xl shadow-secondary rounded-custom 
+                            p-4 shadow-xl shadow-secondary rounded-custom border border-borderContrast
                             transition-transform duration-300 ease-in-out transform cursor-pointer
                             focus:animate-pulse
                             hover:text-main hover:scale-105 hover:bg-contrast hover:shadow-xl hover:shadow-secondary 

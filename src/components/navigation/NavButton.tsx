@@ -27,7 +27,7 @@ const NavButton: React.FC<NavButtonProps> = ({ label, redirect, type, icon, icon
         <a href={redirect}>
             <div className='relative flex flex-col items-center group'>
                 
-                <button className={`${types[type]} has-tooltip p-2 text-main rounded 
+                <button className={`${types[type]} has-tooltip p-2 text-main rounded-custom 
                 hover:text-main hover:scale-105 hover:bg-contrastHover hover:shadow-l hover:shadow-contrast
                     sm:w-3 lg:w-6 xl:w-12 sm:h-4 lg:h-8 xl:h-16`}>
                     {

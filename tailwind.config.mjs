@@ -19,14 +19,18 @@ export default {
 				errorHover: '#A10000',
 				font: '#1C1C1C',
 				fontInvert: '#FCFCFC',
-				disabled: '#F2F2F2'
+				disabled: '#F2F2F2',
+				borderContrast: 'rgba(0, 18, 52, 0.2)'
 			},
 			borderRadius: {
 				custom: '15px'
 			},
 			fontSize: {
 				base: '32px'
-			}
+			},
+			gap: {
+				menu: '10%'
+			},
 		},
 	},
 	plugins: [
