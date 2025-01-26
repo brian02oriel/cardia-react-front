@@ -39,7 +39,7 @@ const navCardItems: NavCardProps[] = [
 <Layout title="Welcome to Astro.">
 	<div class="flex flex-col h-screen min-w-min min-h-min p-4">
 		<Header title='Bienvenido Brian Nieto'/>
-		<main class="container w-screen my-auto mx-auto p-8 xs:p-4 flex sm:flex-col md:flex-row lg:flex-row flex-wrap md:flex-nowrap lg:flex-nowrap gap-menu">
+		<main class="container w-screen my-auto mx-auto p-8 xs:p-4 flex justify-center sm:flex-col md:flex-row lg:flex-row flex-wrap md:flex-nowrap lg:flex-nowrap gap-menu gap-y-8">
 			{
 				navCardItems.map((props)=> (
 					<NavCard {...props}/>

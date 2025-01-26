@@ -99,17 +99,17 @@ const diagnosticItems: ItemProps[] = [
 <Layout title="Welcome to Astro.">
 	<div class="flex flex-col h-screen min-w-min min-h-min p-4">
         <Header title='Nuevo Diagnóstico' isSecondary/>
-        <main class="p-8 grid grid-cols-2">
-            <div class="px-24 py-4">
-                <div class="p-4 rounded-custom border border-borderContrast shadow-xl shadow-secondary max-h-fit">
+        <main class="p-8 flex justify-center sm:flex-col md:flex-row lg:flex-row flex-wrap md:flex-nowrap lg:flex-nowrap gap-8">
+            <div class="rounded-custom border border-borderContrast shadow-xl shadow-secondary max-h-fit min-w-[30%]">
+                <div class="p-4">
                     <Form client:load />
                 </div>
             </div>
-            <div class="p-4 rounded-custom border border-borderContrast shadow-xl shadow-secondary max-h-fit">
-                <div class="p-4">
+            <div class="rounded-custom border border-borderContrast shadow-xl shadow-secondary max-h-fit min-w-[45%]">
+                <div class="p-5">
                     <Results client:load {...diagnosticeResults}/>
                 </div>
-                <div class="p-4">
+                <div class="p-5">
                     <Results client:load {...selectedSymptoms}/>
                 </div>
             </div>
