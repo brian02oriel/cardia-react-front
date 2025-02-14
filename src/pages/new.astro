@@ -2,117 +2,15 @@
 import Header from '../components/navigation/Header';
 import Layout from '../layouts/Layout.astro';
 import "../styles/global.css";
-import Form from '../components/forms/Form';
-import Results, { type ResultsProps } from '../components/display/Results';
-import { Severity, type ItemProps } from '../components/display/Items';
-import { Types } from '../components/display/Placeholder';
+import NewView from '../components/views/new';
 
-const diagnosticItems: ItemProps[] = [
-        {
-            name: 'Infarto Agudo del Miocardio',
-            code: 'IAM',
-            percentage: 40.9,
-            severity: Severity.HIGH
-        },
-        {
-            name: 'Infarto Agudo del Miocardio',
-            code: 'IAM',
-            percentage: 40.9,
-            severity: Severity.HIGH
-        },
-        {
-            name: 'Infarto Agudo del Miocardio',
-            code: 'IAM',
-            percentage: 40.9,
-            severity: Severity.HIGH
-        },
-        {
-            name: 'Embolia pulmonar aguda',
-            code: 'EPA',
-            percentage: 30.5,
-            severity: Severity.MEDIUM
-        },
-        {
-            name: 'Embolia pulmonar aguda',
-            code: 'EPA',
-            percentage: 30.5,
-            severity: Severity.MEDIUM
-        },
-        {
-            name: 'Pericarditis Aguda',
-            code: 'PA',
-            percentage: 10,
-            severity: Severity.LOW
-        },
-        {
-            name: 'Pericarditis Aguda',
-            code: 'PA',
-            percentage: 10,
-            severity: Severity.LOW
-        },
-        {
-            name: 'Pericarditis Aguda',
-            code: 'PA',
-            percentage: 10,
-            severity: Severity.LOW
-        },
-        {
-            name: 'Pericarditis Aguda',
-            code: 'PA',
-            percentage: 10,
-            severity: Severity.LOW
-        }
-    ]
-
-    const diagnosticeResults: ResultsProps = {
-        title: 'Resultados',
-        items: diagnosticItems,
-        types: Types.DIAGNOSTIC
-    }
-
-    const selectedItems: ItemProps[] = [
-        {
-            name: 'Sufre hipertension',
-            code: 'hypertension'
-        },
-        {
-            name: 'Sufre diabetes',
-            code: 'diabetes'
-        },
-        {
-            name: 'Historial de Estenosis Coronaria (>=50%)',
-            code: 'historyOfCoronaryStenosis'
-        },
-        {
-            name: 'Al menos dos episodios de angina (en las ultimas 24h)',
-            code: 'anginaEpisodes'
-        }
-    ]
-
-    const selectedSymptoms: ResultsProps = {
-        title: 'Seleccionados',
-        items: selectedItems,
-        types: Types.SELECTION
-    }
     
 ---
 <Layout title="Welcome to Astro.">
 	<div class="flex flex-col h-screen min-w-min min-h-min p-4">
         <Header title='Nuevo Diagnóstico' isSecondary/>
         <main class="p-8 flex justify-center sm:flex-col md:flex-row lg:flex-row flex-wrap md:flex-nowrap lg:flex-nowrap gap-8">
-            <div class="rounded-custom border border-borderContrast shadow-xl shadow-secondary max-h-fit min-w-[30%]">
-                <div class="p-4">
-                    <Form client:load />
-                </div>
-            </div>
-            <div class="rounded-custom border border-borderContrast shadow-xl shadow-secondary max-h-fit min-w-[45%]">
-                <div class="p-5">
-                    <Results client:load {...diagnosticeResults}/>
-                </div>
-                <div class="p-5">
-                    <Results client:load {...selectedSymptoms}/>
-                </div>
-            </div>
+            <NewView client:load />
         </main>
 	</div>
 </Layout>

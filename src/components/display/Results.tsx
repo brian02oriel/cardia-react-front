@@ -9,7 +9,7 @@ export interface ResultsProps {
    types: Types
 }
 
-const Results: React.FC<ResultsProps> = ({ title, items, types }) => {
+const Results = ({ title, items, types }: ResultsProps) => {
 
     return (
         <div className='w-auto'>
