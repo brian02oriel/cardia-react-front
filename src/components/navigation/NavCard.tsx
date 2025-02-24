@@ -2,7 +2,7 @@ import React from 'react';
 import {New, Database, Chart, Settings} from '../utilities/Icons'
 
 
-export interface NavCardProps {
+export interface INavCardProps {
     icon: 'new' | 'database' | 'chart' | 'settings'
     redirect: string
     label: string
@@ -11,7 +11,7 @@ export interface NavCardProps {
     tooltip?: string
 }
 
-const NavCard: React.FC<NavCardProps> = ({ icon, redirect, label, iconWidth, iconHeight, tooltip }) => {
+const NavCard  = ({ icon, redirect, label, iconWidth, iconHeight, tooltip }: INavCardProps) => {
     const icons = {
         new: <New width={iconWidth} height={iconHeight} />,
         database: <Database width={iconWidth} height={iconHeight}/>,

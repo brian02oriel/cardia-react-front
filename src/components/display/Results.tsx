@@ -1,15 +1,15 @@
 import React from 'react';
-import DiagnosticItem, { type ItemProps } from './Items';
-import Placeholder, { Types } from './Placeholder';
+import DiagnosticItem, { type IItemProps } from './Items';
+import Placeholder, { ETypes } from './Placeholder';
 
 
-export interface ResultsProps {
+export interface IResultsProps {
    title : string
-   items: ItemProps[]
-   types: Types
+   items: IItemProps[]
+   types: ETypes
 }
 
-const Results = ({ title, items, types }: ResultsProps) => {
+const Results = ({ title, items, types }: IResultsProps) => {
 
     return (
         <div className='w-auto'>
@@ -19,7 +19,7 @@ const Results = ({ title, items, types }: ResultsProps) => {
             <div className='max-h-56 border rounded-custom overflow-auto'>
                 {
                    items?.length > 0 ? 
-                    items.map((item)=> <DiagnosticItem {...item} key={item.code}/>) :
+                    items.map((item, index)=> <DiagnosticItem {...item} key={item.code + index}/>) :
                     <Placeholder type={types}/>
                 }
             </div>

@@ -1,78 +1,86 @@
-import { useForm } from 'react-hook-form';
-import CustomSelect, { type CustomSelectOption } from './CustomSelect';
+import { Controller, useForm } from 'react-hook-form';
+import CustomSelect, { type ICustomSelectOption } from './CustomSelect';
+import { useEffect } from 'react';
+
 
 const Form = () => {
-    const { 
-        register, 
-        handleSubmit, 
-        formState: { 
-            errors,
-        },
-        watch
-    } = useForm()
-
-    console.log(JSON.stringify(watch(), null, 2))
-    const onSubmit = handleSubmit((data)=> {
+    const {
+        handleSubmit,
+        control,
+        register,
+        watch,
+        formState: { errors },
+      } = useForm();
+    const onSubmit = (data: any)=> {
         console.log(data)
-    })
+    }
 
-    const multiOptions: CustomSelectOption[] = [
+    // Watch the value of the 'symptoms' field
+    const selectedSymptoms = watch('symptoms');
+
+    // Log the value whenever it changes
+    useEffect(() => {
+        console.log('Selected Symptoms:', selectedSymptoms);
+    }, [selectedSymptoms]);
+
+    const multiOptions: ICustomSelectOption[] = [
         {
-            code: 'olderThan65',
+            value: 'olderThan65',
             label: 'Persona mayor a 65 anos'
         },
         {
-            code: 'hypertension',
+            value: 'hypertension',
             label: 'Sufre hipertension'
         },
         {
-            code: 'diabetes',
+            value: 'diabetes',
             label: 'Sufre diabetes'
            
         },
         {
-            code: 'hyperlipidemia',
+            value: 'hyperlipidemia',
             label: 'Hiperlipidemia'
         },
         {
-            code: 'smoker',
+            value: 'smoker',
             label: 'Fumador'
         },
         {
-            code: 'historyOfHeartDisease',
+            value: 'historyOfHeartDisease',
             label: 'Historial familiar de enfermedades cardiacas'
         },
         {
-            code: 'historyOfCoronaryStenosis',
+            value: 'historyOfCoronaryStenosis',
             label: 'Historial de Estenosis Coronaria (>=50%)'
         },
         {
-            code: 'anginaEpisodes',
+            value: 'anginaEpisodes',
             label: 'Al menos dos episodios de angina (en las ultimas 24h)'
         },
         {
-            code: 'aspirinUsage',
+            value: 'aspirinUsage',
             label: 'Uso de aspirina en los ultimos 7 dias'
         },
         {
-            code: 'segmentSTChanges',
+            value: 'segmentSTChanges',
             label: 'Desviacion/Cambio en el segmento ST (>=0.05 mV)'
         },
         {
-            code: 'necrosisMarkers',
+            value: 'necrosisMarkers',
             label: 'Marcadores cardiacos de necrosis (troponina o CK-MB)'
         },
 
     ]
 
-    const singleOptions: CustomSelectOption[] = [
+    const singleOptions: ICustomSelectOption[] = [
         {
-            code: 'chestPain',
+            value: 'chestPain',
             label: 'Dolor de pecho'
         },
     ]
+
     return (
-        <form className='p-2 min-w-80' onSubmit={onSubmit}>
+        <form className='p-2 min-w-80' onSubmit={handleSubmit(onSubmit)}>
             <div className='mb-5'>
                 <label htmlFor='firstName' className='block mb-2 text-sm font-medium'> Nombre </label>
                 <input type='text' {...register('firstName', {
@@ -96,8 +104,8 @@ const Form = () => {
                                         focus:ring-blue-500 focus:border-info'/>
             </div>
             <div className='mb-5'>
-                <label htmlFor='id' className='block mb-2 text-sm font-medium'> Identificación </label>
-                <input type='text' {...register('id', {
+                <label htmlFor='personId' className='block mb-2 text-sm font-medium'> Identificación </label>
+                <input type='text' {...register('personId', {
                                 required: true
                             })} 
                             placeholder='Cedula/Pasaporte'
@@ -117,16 +125,27 @@ const Form = () => {
             </div>
             <div className='mb-5'>
                 <label htmlFor='differential' className='block mb-2 text-sm font-medium'> Diferencial </label>
-                <CustomSelect options={singleOptions} placeholder='Seleccione diferencial'  isDisabled={true} {...register('differential', {
+                <CustomSelect instanceId='differential' options={singleOptions} placeholder='Seleccione diferencial'  isDisabled={true} {...register('differential', {
                                 required: true,
                                 disabled: true
                             })} />
             </div>
             <div className='mb-5'>
                 <label htmlFor='symptoms' className='block mb-2 text-sm font-medium'> Factores de riesgo </label>
-                <CustomSelect options={multiOptions} placeholder='Seleccione sintomas' isMulti={true} {...register('symptoms', {
-                                required: true
-                            })} />
+                <Controller
+                    name='symptoms'
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                        <CustomSelect
+                            instanceId='symptoms'
+                            options={multiOptions}
+                            placeholder='Seleccione sintomas'
+                            isMulti={true}
+                            {...field}
+                        />
+                    )}
+                />
             </div>
             <div className='flex justify-end'>
                 <button type='submit' className='text-main hover:mainHover bg-success hover:bg-successHover focus:ring-4 focus:outline-none focus:ring-success font-medium rounded-custom text-sm px-5 py-2.5 text-center min-w-36'> Enviar </button>

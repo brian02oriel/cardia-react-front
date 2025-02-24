@@ -3,7 +3,7 @@ import { Back, Logout } from '../utilities/Icons';
 import Tooltip from '../utilities/Tooltip';
 
 
-export interface NavButtonProps {
+export interface INavButtonProps {
     label?: string
     redirect: string
     type: 'info' | 'success' | 'error'
@@ -13,7 +13,7 @@ export interface NavButtonProps {
     tooltip?: string
 }
 
-const NavButton: React.FC<NavButtonProps> = ({ label, redirect, type, icon, iconHeight, iconWidth, tooltip }: NavButtonProps) => {
+const NavButton = ({ label, redirect, type, icon, iconHeight, iconWidth, tooltip }: INavButtonProps) => {
     const icons = {
         back: <Back width={iconWidth} height={iconHeight}/>,
         logout: <Logout width={iconWidth} height={iconHeight}/>

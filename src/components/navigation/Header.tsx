@@ -1,12 +1,12 @@
 import React from 'react';
 import NavButton from './NavButton';
 
-interface HeaderProps {
+interface IHeaderProps {
     title: string
     isSecondary? : boolean
 }
 
-const Header: React.FC<HeaderProps> = ({ title, isSecondary }) => {
+const Header = ({ title, isSecondary }: IHeaderProps) => {
     return (
         <header className="p-4 grid grid-cols-4">
             <div className="col-span-3"> 

@@ -1,18 +1,18 @@
 import React from 'react';
-export enum Severity {
+export enum ESeverity {
     LOW = 'success',
     MEDIUM = 'warning',
     HIGH = 'error'
 }
 
-export interface ItemProps {
+export interface IItemProps {
     name: string
     code: string
     percentage?: number
-    severity?: Severity
+    severity?: ESeverity
 }
 
-const DiagnosticItem: React.FC<ItemProps> = ({ name, percentage, severity }) => {
+const DiagnosticItem = ({ name, percentage, severity }: IItemProps) => {
     return (
         <div className={`${severity ? `severity-${severity}` : 'border'} p-4 w-auto grid grid-cols-4 group-has-${severity}`}>
             {

@@ -1,75 +1,75 @@
-import { Severity, type ItemProps } from '../display/Items';
-import type { ResultsProps } from '../display/Results';
-import { Types } from '../display/Placeholder';
+import { ESeverity, type IItemProps } from '../display/Items';
+import type { IResultsProps } from '../display/Results';
+import { ETypes } from '../display/Placeholder';
 import Results from '../display/Results';
 import Form from '../forms/Form';
 
 
 const NewView = ({props}: any) => {
-    const diagnosticItems: ItemProps[] = [
+    const diagnosticItems: IItemProps[] = [
         {
             name: 'Infarto Agudo del Miocardio',
             code: 'IAM',
             percentage: 40.9,
-            severity: Severity.HIGH
+            severity: ESeverity.HIGH
         },
         {
             name: 'Infarto Agudo del Miocardio',
             code: 'IAM',
             percentage: 40.9,
-            severity: Severity.HIGH
+            severity: ESeverity.HIGH
         },
         {
             name: 'Infarto Agudo del Miocardio',
             code: 'IAM',
             percentage: 40.9,
-            severity: Severity.HIGH
+            severity: ESeverity.HIGH
         },
         {
             name: 'Embolia pulmonar aguda',
             code: 'EPA',
             percentage: 30.5,
-            severity: Severity.MEDIUM
+            severity: ESeverity.MEDIUM
         },
         {
             name: 'Embolia pulmonar aguda',
             code: 'EPA',
             percentage: 30.5,
-            severity: Severity.MEDIUM
+            severity: ESeverity.MEDIUM
         },
         {
             name: 'Pericarditis Aguda',
             code: 'PA',
             percentage: 10,
-            severity: Severity.LOW
+            severity: ESeverity.LOW
         },
         {
             name: 'Pericarditis Aguda',
             code: 'PA',
             percentage: 10,
-            severity: Severity.LOW
+            severity: ESeverity.LOW
         },
         {
             name: 'Pericarditis Aguda',
             code: 'PA',
             percentage: 10,
-            severity: Severity.LOW
+            severity: ESeverity.LOW
         },
         {
             name: 'Pericarditis Aguda',
             code: 'PA',
             percentage: 10,
-            severity: Severity.LOW
+            severity: ESeverity.LOW
         }
     ]
 
-    const diagnosticeResults: ResultsProps = {
+    const diagnosticeResults: IResultsProps = {
         title: 'Resultados',
         items: diagnosticItems,
-        types: Types.DIAGNOSTIC
+        types: ETypes.DIAGNOSTIC
     }
 
-    const selectedItems: ItemProps[] = [
+    const selectedItems: IItemProps[] = [
         {
             name: 'Sufre hipertension',
             code: 'hypertension'
@@ -88,10 +88,10 @@ const NewView = ({props}: any) => {
         }
     ]
 
-    const selectedSymptoms: ResultsProps = {
+    const selectedSymptoms: IResultsProps = {
         title: 'Seleccionados',
         items: selectedItems,
-        types: Types.SELECTION
+        types: ETypes.SELECTION
     }
     
     return (
