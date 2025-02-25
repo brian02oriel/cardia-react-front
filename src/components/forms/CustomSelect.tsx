@@ -1,16 +1,17 @@
 import clsx from 'clsx';
-import { forwardRef } from 'react';
-import Select, { type ClassNamesConfig, type GroupBase, type StylesConfig } from 'react-select';
+import { forwardRef, useEffect, useState } from 'react';
+import ReactSelect, { components } from 'react-select';
+import { type ClassNamesConfig, type GroupBase, type StylesConfig } from 'react-select';
 
 
-export interface ICustomSelectOption {
+export interface IOption {
     value: string
     label: string
 }
 
 interface ISelectProps {
     instanceId: string
-    options: ICustomSelectOption[]
+    options: IOption[]
     placeholder?: string
     isMulti?: true 
     isDisabled?: boolean
@@ -22,7 +23,7 @@ const optionStyles = {
     selected: "after:content-['✔'] after:ml-2 after:text-green-500 text-gray-500",
     };
 
-const customClasses: ClassNamesConfig<ICustomSelectOption, true, GroupBase<ICustomSelectOption>> | undefined = {
+const customClasses: ClassNamesConfig<IOption, true, GroupBase<IOption>> | undefined = {
     control: ( { isFocused, isDisabled } ) => 
         clsx(
             'text-sm border rounded-custom p-0.5 shadow-sm block w-full',
@@ -50,7 +51,7 @@ const customClasses: ClassNamesConfig<ICustomSelectOption, true, GroupBase<ICust
     noOptionsMessage: () => 'text-gray-500 p-2 bg-gray-50 border border-dashed border-gray-200 rounded-custom',
 }
 
-const customStyles: StylesConfig<ICustomSelectOption, true, GroupBase<ICustomSelectOption>> | undefined = {
+const customStyles: StylesConfig<IOption, true, GroupBase<IOption>> | undefined = {
     // Remove TailwindCSS default styles for div inside the input
     input: (base) => ({
         ...base,
@@ -71,21 +72,18 @@ const customStyles: StylesConfig<ICustomSelectOption, true, GroupBase<ICustomSel
     }),
 }
 
-const CustomSelect = forwardRef(({instanceId, options, placeholder, isMulti, isDisabled}: ISelectProps, ref) => {
+
+const CustomSelect = forwardRef<any, any>(({ ...props }, ref) => {
     return (
-            <Select
-                unstyled
-                instanceId={instanceId}
-                classNames={customClasses}
-                styles={customStyles}
-                closeMenuOnSelect={false}
-                isMulti={isMulti ?? undefined}
-                options={options}
-                placeholder={placeholder}
-                isDisabled={isDisabled ?? undefined}
-                defaultValue={!isMulti ? options[0] : undefined}
-            />
+        <ReactSelect
+        unstyled
+        classNames={customClasses}
+        styles={customStyles}
+        ref={ref}
+        {...props}
+    />
     );
-});
+  });
+
 
 export default CustomSelect;

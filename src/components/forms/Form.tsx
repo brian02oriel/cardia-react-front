@@ -1,7 +1,18 @@
 import { Controller, useForm } from 'react-hook-form';
-import CustomSelect, { type ICustomSelectOption } from './CustomSelect';
-import { useEffect } from 'react';
+import CustomSelect, { type IOption } from './CustomSelect';
+import { useEffect, useState } from 'react';
+import ReactSelect from 'react-select';
 
+
+
+type IFormValues = {
+    firstName: string
+    lastName: string
+    personId: string
+    email: string
+    differential: IOption[]
+    symptoms: IOption[]
+}
 
 const Form = () => {
     const {
@@ -10,7 +21,8 @@ const Form = () => {
         register,
         watch,
         formState: { errors },
-      } = useForm();
+      } = useForm<IFormValues>()
+
     const onSubmit = (data: any)=> {
         console.log(data)
     }
@@ -21,9 +33,9 @@ const Form = () => {
     // Log the value whenever it changes
     useEffect(() => {
         console.log('Selected Symptoms:', selectedSymptoms);
-    }, [selectedSymptoms]);
+    }, [watch('symptoms')]);
 
-    const multiOptions: ICustomSelectOption[] = [
+    const multiOptions: IOption[] = [
         {
             value: 'olderThan65',
             label: 'Persona mayor a 65 anos'
@@ -72,7 +84,7 @@ const Form = () => {
 
     ]
 
-    const singleOptions: ICustomSelectOption[] = [
+    const singleOptions: IOption[] = [
         {
             value: 'chestPain',
             label: 'Dolor de pecho'
@@ -125,24 +137,34 @@ const Form = () => {
             </div>
             <div className='mb-5'>
                 <label htmlFor='differential' className='block mb-2 text-sm font-medium'> Diferencial </label>
-                <CustomSelect instanceId='differential' options={singleOptions} placeholder='Seleccione diferencial'  isDisabled={true} {...register('differential', {
-                                required: true,
-                                disabled: true
-                            })} />
+                <Controller
+                    name="differential"
+                    control={control}
+                    render={({ field }) => (
+                        <CustomSelect
+                        {...field}
+                        ref={field.ref}
+                        instanceId="differential"
+                        options={singleOptions}
+                        defaultValue={singleOptions}
+                        isDisabled
+                        />
+                    )}
+                    />
             </div>
             <div className='mb-5'>
                 <label htmlFor='symptoms' className='block mb-2 text-sm font-medium'> Factores de riesgo </label>
                 <Controller
-                    name='symptoms'
+                    name="symptoms"
                     control={control}
-                    rules={{ required: true }}
                     render={({ field }) => (
                         <CustomSelect
-                            instanceId='symptoms'
-                            options={multiOptions}
-                            placeholder='Seleccione sintomas'
-                            isMulti={true}
                             {...field}
+                            ref={field.ref}
+                            placeholder="Seleccione..."
+                            instanceId="symptoms"
+                            options={multiOptions}
+                            isMulti
                         />
                     )}
                 />
