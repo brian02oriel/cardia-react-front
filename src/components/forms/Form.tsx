@@ -1,7 +1,6 @@
 import { Controller, useForm } from 'react-hook-form';
 import CustomSelect, { type IOption } from './CustomSelect';
-import { useEffect, useState } from 'react';
-import ReactSelect from 'react-select';
+import { ApiClientService, EHttpMethods } from '../../../services/ApiClientService';
 
 
 
@@ -23,18 +22,15 @@ const Form = () => {
         formState: { errors },
       } = useForm<IFormValues>()
 
-    const onSubmit = (data: any)=> {
+    const onSubmit = (data: IFormValues)=> {
         console.log(data)
+        const apiClientService = new ApiClientService()
+        apiClientService.apiRequest<IFormValues>({
+            url: '/api/diagnosis',
+            method: EHttpMethods.POST,
+            data: data
+        })
     }
-
-    // Watch the value of the 'symptoms' field
-    const selectedSymptoms = watch('symptoms');
-
-    // Log the value whenever it changes
-    useEffect(() => {
-        console.log('Selected Symptoms:', selectedSymptoms);
-    }, [watch('symptoms')]);
-
     const multiOptions: IOption[] = [
         {
             value: 'olderThan65',
