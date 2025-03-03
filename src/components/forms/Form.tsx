@@ -4,13 +4,27 @@ import { ApiClientService, EHttpMethods } from '../../../services/ApiClientServi
 
 
 
-type IFormValues = {
+type IDiagnosisBody = {
     firstName: string
     lastName: string
     personId: string
     email: string
     differential: IOption[]
     symptoms: IOption[]
+}
+
+const defaultValues: IDiagnosisBody = {
+    firstName: '',
+    lastName: '',
+    personId: '',
+    email: '',
+    differential: [
+        {
+            value: 'chestPain',
+            label: 'Dolor de pecho'
+        }
+    ],
+    symptoms: []
 }
 
 const Form = () => {
@@ -20,13 +34,15 @@ const Form = () => {
         register,
         watch,
         formState: { errors },
-      } = useForm<IFormValues>()
+      } = useForm<IDiagnosisBody>({
+        defaultValues
+      })
 
-    const onSubmit = (data: IFormValues)=> {
+    const onSubmit = (data: IDiagnosisBody)=> {
         console.log(data)
         const apiClientService = new ApiClientService()
-        apiClientService.apiRequest<IFormValues>({
-            url: '/api/diagnosis',
+        apiClientService.apiRequest<IDiagnosisBody>({
+            url: '/diagnosis',
             method: EHttpMethods.POST,
             data: data
         })
@@ -76,6 +92,34 @@ const Form = () => {
         {
             value: 'necrosisMarkers',
             label: 'Marcadores cardiacos de necrosis (troponina o CK-MB)'
+        },
+        {
+            value: 'deepVeinThrombosis',
+            label: 'Signos clínicos de trombosis venosa profunda (TVP)'
+        },
+        {
+            value: 'alternativeToEP',
+            label: 'Diagnóstico alternativo menos probable que la EP'
+        },
+        {
+            value: 'beatsPerMinutesOverHundred',
+            label: 'Frecuencia cardíaca > 100bpm'
+        },
+        {
+            value: 'previousSurgery',
+            label: 'Inmovilización o cirugía mayor en las últimas 4 semanas'
+        },
+        {
+            value: 'previousTVPOrEp',
+            label: 'Historia previa de EP o TVP'
+        },
+        {
+            value: 'hemoptisis',
+            label: 'Hemoptisis'
+        },
+        {
+            value: 'activeCancer',
+            label: 'Cáncer activo'
         },
 
     ]

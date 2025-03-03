@@ -1,4 +1,4 @@
-import axios, { type AxiosResponse } from 'axios';
+import axios, { type AxiosInstance, type AxiosResponse } from 'axios';
 
 
 export enum EHttpMethods {
@@ -14,12 +14,14 @@ interface IApiRequestProps<T> {
     data?: T;
 }
 
+const API_URL = import.meta.env.PUBLIC_API_URL;
+
 export class ApiClientService {
-    private apiClient: any;
+    private apiClient: AxiosInstance;
   
     constructor() {
         this.apiClient = axios.create({
-            baseURL: 'http://0.0.0.0:8000/api',
+            baseURL: `${API_URL}`,
             headers: {
               'Content-Type': 'application/json',
             },
@@ -27,12 +29,17 @@ export class ApiClientService {
     }
 
     public async apiRequest<T>({url, method, data}: IApiRequestProps<T>): Promise<T> {
+      try {
         const response: AxiosResponse<T> = await this.apiClient({
-          method,
-          url,
-          data,
-        });
-      
-        return response.data;
-      }
+            method,
+            url,
+            data,
+          });
+        
+          return response.data;
+      } catch (error) {
+        console.error(error)
+        throw error
+      }  
     }
+}
