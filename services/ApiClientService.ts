@@ -8,10 +8,10 @@ export enum EHttpMethods {
     DELETE = 'DELETE',
 }
 
-interface IApiRequestProps<T> {
+interface IApiRequestProps {
     url: string;
     method: EHttpMethods.GET | EHttpMethods.POST | EHttpMethods.PUT | EHttpMethods.DELETE;
-    data?: T;
+    data?: any;
 }
 
 const API_URL = import.meta.env.PUBLIC_API_URL;
@@ -28,7 +28,7 @@ export class ApiClientService {
           });
     }
 
-    public async apiRequest<T>({url, method, data}: IApiRequestProps<T>): Promise<T> {
+    public async apiRequest<T>({url, method, data}: IApiRequestProps): Promise<T> {
       try {
         const response: AxiosResponse<T> = await this.apiClient({
             method,

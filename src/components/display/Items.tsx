@@ -1,8 +1,8 @@
 import React from 'react';
 export enum ESeverity {
-    LOW = 'success',
-    MEDIUM = 'warning',
-    HIGH = 'error'
+    LOW = 'LOW',
+    MEDIUM = 'MEDIUM',
+    HIGH = 'HIGH'
 }
 
 export interface IItemProps {
@@ -14,7 +14,7 @@ export interface IItemProps {
 
 const DiagnosticItem = ({ name, percentage, severity }: IItemProps) => {
     return (
-        <div className={`${severity ? `severity-${severity}` : 'border'} p-4 w-auto grid grid-cols-4 group-has-${severity}`}>
+        <div className={`p-4 w-auto grid grid-cols-4 group-has-${severity}`}>
             {
                 severity ? 
                 <>

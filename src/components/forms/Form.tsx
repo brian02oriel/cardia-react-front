@@ -1,8 +1,20 @@
 import { Controller, useForm } from 'react-hook-form';
 import CustomSelect, { type IOption } from './CustomSelect';
 import { ApiClientService, EHttpMethods } from '../../../services/ApiClientService';
+import type { ESeverity } from '../display/Items';
 
+type IFormProps = {
+    handleDiagnosis: any
+}
 
+export type IDiagnosisResults = {
+    name: string
+    code: string
+    diagnosis: number
+    symptoms: IOption[]
+    differential: IOption[]
+    severity: ESeverity
+}
 
 type IDiagnosisBody = {
     firstName: string
@@ -27,25 +39,26 @@ const defaultValues: IDiagnosisBody = {
     symptoms: []
 }
 
-const Form = () => {
+const Form = ({ handleDiagnosis }: IFormProps) => {
     const {
         handleSubmit,
         control,
         register,
-        watch,
         formState: { errors },
       } = useForm<IDiagnosisBody>({
         defaultValues
       })
 
     const onSubmit = (data: IDiagnosisBody)=> {
-        console.log(data)
-        const apiClientService = new ApiClientService()
-        apiClientService.apiRequest<IDiagnosisBody>({
-            url: '/diagnosis',
-            method: EHttpMethods.POST,
-            data: data
-        })
+        const diagnosis = async (data: IDiagnosisBody): Promise<IDiagnosisResults[]> => {
+            const apiClientService = new ApiClientService()
+            return await apiClientService.apiRequest<IDiagnosisResults[]>({
+                url: '/diagnosis',
+                method: EHttpMethods.POST,
+                data: data
+            });
+          };
+        handleDiagnosis(diagnosis(data));
     }
     const multiOptions: IOption[] = [
         {
