@@ -7,16 +7,19 @@ import { useState } from 'react';
 
 
 const NewView = ({props}: any) => {
-    const [diagnosis, setDiagnosis] = useState<IDiagnosisResults>({
-        name: '',
-        code: '',
-        diagnosis: 0,
-        symptoms: [],
-        differential: [],
-        severity: ESeverity.LOW
-    })
+    const [diagnosis, setDiagnosis] = useState<IDiagnosisResults[]>(
+        [
+            {
+                name: '',
+                code: '',
+                diagnosis: 0,
+                symptoms: [],
+                differential: [],
+                severity: ESeverity.LOW
+            }
+])
 
-    function handleDiagnosis(data: IDiagnosisResults) {
+    function handleDiagnosis(data: IDiagnosisResults[]) {
         console.log(data)
         setDiagnosis(data);
       }
@@ -78,37 +81,6 @@ const NewView = ({props}: any) => {
         }
     ]
 
-    const diagnosticeResults: IResultsProps = {
-        title: 'Resultados',
-        items: diagnosticItems,
-        types: ETypes.DIAGNOSTIC
-    }
-
-    const selectedItems: IItemProps[] = [
-        {
-            name: 'Sufre hipertension',
-            code: 'hypertension'
-        },
-        {
-            name: 'Sufre diabetes',
-            code: 'diabetes'
-        },
-        {
-            name: 'Historial de Estenosis Coronaria (>=50%)',
-            code: 'historyOfCoronaryStenosis'
-        },
-        {
-            name: 'Al menos dos episodios de angina (en las ultimas 24h)',
-            code: 'anginaEpisodes'
-        }
-    ]
-
-    const selectedSymptoms: IResultsProps = {
-        title: 'Seleccionados',
-        items: selectedItems,
-        types: ETypes.SELECTION
-    }
-    
     return (
         <>
             <div className="rounded-custom border border-borderContrast shadow-xl shadow-secondary max-h-fit min-w-[30%] max-w-[30%]">
@@ -118,10 +90,7 @@ const NewView = ({props}: any) => {
             </div>
             <div className="rounded-custom border border-borderContrast shadow-xl shadow-secondary max-h-fit min-w-[45%] max-w-[45%]">
                 <div className="p-5">
-                    <Results {...diagnosticeResults}/>
-                </div>
-                <div className="p-5">
-                    <Results {...selectedSymptoms}/>
+                    <Results title='Resultados' types={ETypes.DIAGNOSTIC} results={diagnosis}/>
                 </div>
             </div>
         </>

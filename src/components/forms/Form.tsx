@@ -49,7 +49,7 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
         defaultValues
       })
 
-    const onSubmit = (data: IDiagnosisBody)=> {
+    const onSubmit = async (data: IDiagnosisBody)=> {
         const diagnosis = async (data: IDiagnosisBody): Promise<IDiagnosisResults[]> => {
             const apiClientService = new ApiClientService()
             return await apiClientService.apiRequest<IDiagnosisResults[]>({
@@ -58,7 +58,7 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
                 data: data
             });
           };
-        handleDiagnosis(diagnosis(data));
+        handleDiagnosis(await diagnosis(data));
     }
     const multiOptions: IOption[] = [
         {
