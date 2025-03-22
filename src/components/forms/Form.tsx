@@ -1,7 +1,7 @@
 import { Controller, useForm } from 'react-hook-form';
 import CustomSelect, { type IOption } from './CustomSelect';
 import { ApiClientService, EHttpMethods } from '../../../services/ApiClientService';
-import type { ESeverity } from '../display/Items';
+import type { ESeverity } from '../display/DiagnosticItem';
 
 type IFormProps = {
     handleDiagnosis: any

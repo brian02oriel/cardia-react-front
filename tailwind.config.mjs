@@ -12,6 +12,7 @@ export default {
 				warning: '#E0BA00',
 				error: '#C50000',
 				mainHover: '#B3B3B3',
+				listHover: '#E9E9E9',
 				contrastHover: '#001F59',
 				infoHover: '#0042BE',
 				successHover: '#006200',

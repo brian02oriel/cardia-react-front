@@ -32,16 +32,18 @@ h1 {
   }
 
   .severity-error {
-    @apply bg-error;
-    @apply text-main;
+    background-color: #e9c2c2;
+    color: #842029;
   }
 
   .severity-warning {
-    @apply text-warning;
+    background-color: #E8E1C1;
+    color: #664D03;
   }
 
   .severity-success {
-    @apply text-success;
+    background-color: #C8E8C1;
+    color: #205C29;
   }
   
   

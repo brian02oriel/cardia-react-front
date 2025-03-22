@@ -1,20 +1,12 @@
 import clsx from 'clsx';
-import { forwardRef, useEffect, useState } from 'react';
-import ReactSelect, { components } from 'react-select';
+import { forwardRef } from 'react';
+import ReactSelect from 'react-select';
 import { type ClassNamesConfig, type GroupBase, type StylesConfig } from 'react-select';
 
 
-export interface IOption {
+export type IOption = {
     value: string
     label: string
-}
-
-interface ISelectProps {
-    instanceId: string
-    options: IOption[]
-    placeholder?: string
-    isMulti?: true 
-    isDisabled?: boolean
 }
 
 const optionStyles = {
@@ -31,7 +23,7 @@ const customClasses: ClassNamesConfig<IOption, true, GroupBase<IOption>> | undef
             isDisabled ? 'bg-disabled text-gray-400' : 'bg-gray-50 text-black'
         ),
     placeholder: () => 'text-gray-400',
-    valueContainer: () => 'p-1 gap-1 cursor-pointer',
+    valueContainer: () => 'p-1 gap-1 cursor-pointer max-h-20 overflow-auto',
     singleValue: () => 'leading-7 ml-1',
     multiValue: () => 'bg-gray-100 rounded-custom items-center py-0.5 pl-2 pr-1 gap-1.5',
     multiValueLabel: () => 'leading-6 py-0.5',
@@ -52,6 +44,11 @@ const customClasses: ClassNamesConfig<IOption, true, GroupBase<IOption>> | undef
 }
 
 const customStyles: StylesConfig<IOption, true, GroupBase<IOption>> | undefined = {
+    valueContainer: (base) => ({
+        ...base,
+        maxHeight: 100,
+        overflowY: "auto"
+      }),
     // Remove TailwindCSS default styles for div inside the input
     input: (base) => ({
         ...base,
