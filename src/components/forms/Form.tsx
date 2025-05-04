@@ -7,7 +7,11 @@ type IFormProps = {
     handleDiagnosis: any
 }
 
-export type IDiagnosisResults = {
+export type IDiagnosisModel = {
+    id: string
+    diagnosis: IDiagnosisResponse[]
+}
+export type IDiagnosisResponse = {
     name: string
     code: string
     diagnosis: number
@@ -50,9 +54,9 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
       })
 
     const onSubmit = async (data: IDiagnosisBody)=> {
-        const diagnosis = async (data: IDiagnosisBody): Promise<IDiagnosisResults[]> => {
+        const diagnosis = async (data: IDiagnosisBody): Promise<IDiagnosisModel> => {
             const apiClientService = new ApiClientService()
-            return await apiClientService.apiRequest<IDiagnosisResults[]>({
+            return await apiClientService.apiRequest<IDiagnosisModel>({
                 url: '/diagnosis',
                 method: EHttpMethods.POST,
                 data: data

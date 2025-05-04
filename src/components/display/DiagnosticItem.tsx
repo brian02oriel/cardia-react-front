@@ -1,4 +1,4 @@
-import type { IDiagnosisResults } from '../forms/Form';
+import type { IDiagnosisResponse } from '../forms/Form';
 export enum ESeverity {
     LOW = 'LOW',
     MEDIUM = 'MEDIUM',
@@ -12,7 +12,7 @@ const severityColor = {
 }
 
 
-const DiagnosticItem = ({ name, diagnosis, severity }: IDiagnosisResults) => {
+const DiagnosticItem = ({ name, diagnosis, severity }: IDiagnosisResponse) => {
     const severityClass = severityColor[severity]
     return (
         <div className={`${severity ? `severity-${severityClass}` : 'border'} p-4 w-auto grid grid-cols-4 group-has-${severityClass}`}>
