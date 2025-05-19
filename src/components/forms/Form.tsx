@@ -16,7 +16,7 @@ export type IDiagnosisResponse = {
     code: string
     diagnosis: number
     symptoms: IOption[]
-    differential: IOption[]
+    differential: IOption
     severity: ESeverity
 }
 
@@ -25,7 +25,7 @@ type IDiagnosisBody = {
     lastName: string
     personId: string
     email: string
-    differential: IOption[]
+    differential: IOption
     symptoms: IOption[]
 }
 
@@ -34,12 +34,10 @@ const defaultValues: IDiagnosisBody = {
     lastName: '',
     personId: '',
     email: '',
-    differential: [
-        {
-            value: 'chestPain',
-            label: 'Dolor de pecho'
-        }
-    ],
+    differential:{
+        value: 'chestPain',
+        label: 'Dolor de pecho'
+    },
     symptoms: []
 }
 
@@ -64,6 +62,8 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
           };
         handleDiagnosis(await diagnosis(data));
     }
+
+    
     const multiOptions: IOption[] = [
         {
             value: 'olderThan65',
@@ -203,7 +203,7 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
                         ref={field.ref}
                         instanceId="differential"
                         options={singleOptions}
-                        defaultValue={singleOptions}
+                        defaultValue={singleOptions[0]}
                         isDisabled
                         />
                     )}
