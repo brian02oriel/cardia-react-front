@@ -23,6 +23,7 @@ export type IDiagnosisResponse = {
 type IDiagnosisBody = {
     firstName: string
     lastName: string
+    age: number
     personId: string
     email: string
     differential: IOption
@@ -32,6 +33,7 @@ type IDiagnosisBody = {
 const defaultValues: IDiagnosisBody = {
     firstName: '',
     lastName: '',
+    age: 0,
     personId: '',
     email: '',
     differential:{
@@ -58,8 +60,8 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
                 url: '/diagnosis',
                 method: EHttpMethods.POST,
                 data: data
-            });
-          };
+            })
+          }
         handleDiagnosis(await diagnosis(data));
     }
 
@@ -167,6 +169,17 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
                                 required: true
                             })} 
                             placeholder='Apellido del paciente'
+                            className='bg-gray-50 border border-gray-300 
+                                            text-sm text-black rounded-custom
+                                        shadow-sm block w-full p-2.5 placeholder-gray-400
+                                        focus:ring-blue-500 focus:border-info'/>
+            </div>
+            <div className='mb-5'>
+                <label htmlFor='age' className='block mb-2 text-sm font-medium'> Edad </label>
+                <input type='text' {...register('age', {
+                                required: true
+                            })} 
+                            placeholder='Edad del paciente'
                             className='bg-gray-50 border border-gray-300 
                                             text-sm text-black rounded-custom
                                         shadow-sm block w-full p-2.5 placeholder-gray-400

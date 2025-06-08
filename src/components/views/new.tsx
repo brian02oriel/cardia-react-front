@@ -3,7 +3,7 @@ import Form, { type IDiagnosisModel } from '../forms/Form';
 import { useState } from 'react';
 
 
-const NewView = ({props}: any) => {
+const NewView = () => {
     const [diagnosis, setDiagnosis] = useState<IDiagnosisModel>({
         id: '',
         diagnosis: []
