@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react"
 import type { IOption } from "../forms/CustomSelect"
 import { ApiClientService, EHttpMethods } from '../../../services/ApiClientService';
+import Table from "../table/Table";
+import THead from "../table/THead";
+import Th from "../table/Th";
+import Td from "../table/Td";
+import Tr from "../table/Tr";
 
 type IPatient = {
     personId: string
@@ -32,35 +37,39 @@ const PatientsView = () => {
 
     return (
         <>
-            <table>
-                <tr>
-                    <th> ID </th>
-                    <th> Nombre </th>
-                    <th> Apellido </th>
-                    <th> Edad </th>
-                    <th> Email </th>
-                    <th> Diferencial </th>
-                    <th> Pruebas </th>
-                </tr>
-                {
-                    patients.length === 0 && (
-                        <tr>
-                            <td colSpan={7} className="text-center">No hay pacientes registrados</td>
-                        </tr>
-                    )
-                }
-                {patients.map((patient) => (
-                    <tr key={patient.personId}>
-                        <td>{patient.personId}</td>
-                        <td>{patient.firstName}</td>
-                        <td>{patient.lastName}</td>
-                        <td>{patient.age}</td>
-                        <td>{patient.email}</td>
-                        <td>{patient.differential.label}</td>
-                        <td>{patient.count}</td>
-                    </tr>
-                ))}
-            </table>
+        <Table>
+            <THead>
+                <Tr hover={false}>
+                    <Th> ID </Th>
+                    <Th> Nombre </Th>
+                    <Th> Apellido </Th>
+                    <Th> Edad </Th>
+                    <Th> Email </Th>
+                    <Th> Diferencial </Th>
+                    <Th> Pruebas </Th>
+                </Tr>
+            </THead>
+            <tbody>
+            {
+                patients.length === 0 && (
+                    <Tr hover={false}>
+                        <Td colSpan={7} className="text-center">No hay pacientes registrados</Td>
+                    </Tr>
+                )
+            }
+            {patients.map((patient) => (
+                <Tr key={patient.personId}>
+                    <Td>{patient.personId}</Td>
+                    <Td>{patient.firstName}</Td>
+                    <Td>{patient.lastName}</Td>
+                    <Td>{patient.age}</Td>
+                    <Td>{patient.email}</Td>
+                    <Td>{patient.differential.label}</Td>
+                    <Td>{patient.count}</Td>
+                </Tr>
+            ))}
+            </tbody>
+        </Table>
         </>
     );
 };

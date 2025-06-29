@@ -2,6 +2,7 @@ import { Controller, useForm } from 'react-hook-form';
 import CustomSelect, { type IOption } from './CustomSelect';
 import { ApiClientService, EHttpMethods } from '../../../services/ApiClientService';
 import type { ESeverity } from '../display/DiagnosticItem';
+import Label from './Label';
 
 type IFormProps = {
     handleDiagnosis: any
@@ -153,7 +154,7 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
     return (
         <form className='p-2 min-w-80' onSubmit={handleSubmit(onSubmit)}>
             <div className='mb-5'>
-                <label htmlFor='firstName' className='block mb-2 text-sm font-medium'> Nombre </label>
+                <Label htmlFor='firstName'> Nombre </Label>
                 <input type='text' {...register('firstName', {
                                 required: true
                             })} 
@@ -164,7 +165,7 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
                                         focus:ring-blue-500 focus:border-info'/>
             </div>
             <div className='mb-5'>
-                <label htmlFor='lastName' className='block mb-2 text-sm font-medium'> Apellido </label>
+                <Label htmlFor='lastName'> Apellido </Label>
                 <input type='text' {...register('lastName', {
                                 required: true
                             })} 
@@ -175,7 +176,7 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
                                         focus:ring-blue-500 focus:border-info'/>
             </div>
             <div className='mb-5'>
-                <label htmlFor='age' className='block mb-2 text-sm font-medium'> Edad </label>
+                <Label htmlFor='age'> Edad </Label>
                 <input type='text' {...register('age', {
                                 required: true
                             })} 
@@ -186,7 +187,7 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
                                         focus:ring-blue-500 focus:border-info'/>
             </div>
             <div className='mb-5'>
-                <label htmlFor='personId' className='block mb-2 text-sm font-medium'> Identificación </label>
+                <Label htmlFor='personId'> Identificación </Label>
                 <input type='text' {...register('personId', {
                                 required: true
                             })} 
@@ -197,7 +198,7 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
                                         focus:ring-blue-500 focus:border-info'/>
             </div>
             <div className='mb-5'>
-                <label htmlFor='email' className='block mb-2 text-sm font-medium'> Email </label>
+                <Label htmlFor='email'> Email </Label>
                 <input type='text' {...register('email')} 
                             placeholder='Correo electronico del paciente'
                             className='bg-gray-50 border border-gray-300 
@@ -206,7 +207,7 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
                                         focus:ring-blue-500 focus:border-info'/>
             </div>
             <div className='mb-5'>
-                <label htmlFor='differential' className='block mb-2 text-sm font-medium'> Diferencial </label>
+                <Label htmlFor='differential'> Diferencial </Label>
                 <Controller
                     name="differential"
                     control={control}
@@ -223,7 +224,7 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
                     />
             </div>
             <div className='mb-5'>
-                <label htmlFor='symptoms' className='block mb-2 text-sm font-medium'> Factores de riesgo </label>
+                <Label htmlFor='symptoms'> Factores de riesgo </Label>
                 <Controller
                     name="symptoms"
                     control={control}
