@@ -7,7 +7,7 @@ type IProps = HTMLAttributes<HTMLTableElement> & {
 
 const THead = ({ children }: IProps) => {
     return (
-        <thead className='w-full text-2xl bg-contrast text-fontInvert sticky top-0'>
+        <thead className='w-full text-xl bg-contrast text-fontInvert sticky top-0'>
             {children}
         </thead>
     )

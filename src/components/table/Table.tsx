@@ -7,7 +7,7 @@ type IProps = HTMLAttributes<HTMLTableElement> & {
 
 const Table = ({ children }: IProps) => {
     return (
-            <div className='w-full overflow-auto'>
+            <div className='w-full overflow-auto rounded-custom border border-borderContrast'>
                 <table className='w-full text-left'>
                     {children}
                 </table>
