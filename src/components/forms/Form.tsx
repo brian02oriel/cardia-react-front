@@ -214,11 +214,10 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
                     render={({ field }) => (
                         <CustomSelect
                         {...field}
-                        ref={field.ref}
-                        instanceId="differential"
+                        id="differential"
                         options={singleOptions}
-                        defaultValue={singleOptions[0]}
-                        isDisabled
+                        value={singleOptions}
+                        disabled={true}
                         />
                     )}
                     />
@@ -231,11 +230,10 @@ const Form = ({ handleDiagnosis }: IFormProps) => {
                     render={({ field }) => (
                         <CustomSelect
                             {...field}
-                            ref={field.ref}
+
                             placeholder="Seleccione..."
-                            instanceId="symptoms"
+                            id="symptoms"
                             options={multiOptions}
-                            isMulti
                         />
                     )}
                 />
