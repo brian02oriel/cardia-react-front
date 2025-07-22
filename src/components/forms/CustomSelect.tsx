@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Check, ChevronDown, Search, X } from 'lucide-react';
-import type { RefCallBack } from 'react-hook-form';
 export type IOption = {
     value: string
     label: string
@@ -18,7 +17,7 @@ type IProps = {
     maxDisplay?: number
 }
 
-const MultiSelect = ({ 
+const MultiSelect = React.forwardRef<HTMLDivElement, IProps>(({ 
   options = [], 
   value = [], 
   onChange = () => {}, 
@@ -28,7 +27,7 @@ const MultiSelect = ({
   className = "",
   disabled = false,
   maxDisplay = 3
-}: IProps) => {
+}: IProps, ref) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const dropdownRef = useRef(null);
@@ -66,8 +65,8 @@ const MultiSelect = ({
 
   // Handle individual option selection
   const handleOptionToggle = (optionValue: IOption) => {
-    const newValue = value.includes(optionValue)
-      ? value.filter(v => v !== optionValue)
+    const newValue = value.find((v)=> v.value === optionValue.value)
+      ? value.filter(v => v.value !== optionValue.value)
       : [...value, optionValue];
     onChange(newValue);
   };
@@ -90,24 +89,8 @@ const MultiSelect = ({
   // Handle removing a selected item
   const handleRemoveItem = (optionValue: IOption, e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     e.stopPropagation();
-    const newValue = value.filter(v => v !== optionValue);
-    console.log('Removing item:', optionValue); // For debugging
-    console.log('New value after removal:', newValue); 
-    debugger
+    const newValue = value.filter(v => v.value !== optionValue.value);
     onChange(newValue);
-  };
-
-  // Get display text for selected items
-  const getDisplayText = () => {
-    if (value.length === 0) return placeholder;
-    
-    const selectedOptions = getSelectedOptions()
-    
-    if (selectedOptions.length <= maxDisplay) {
-      return selectedOptions.map(option => option.label).join(', ');
-    }
-    
-    return `${selectedOptions.slice(0, maxDisplay).map(option => option.label).join(', ')} +${selectedOptions.length - maxDisplay} more`;
   };
 
 
@@ -116,10 +99,10 @@ const MultiSelect = ({
       {/* Main Input */}
       <div
         className={`
-          min-h-[2.5rem] px-3 py-2 border border-gray-300 rounded-md cursor-pointer
-          flex items-center justify-between gap-2 bg-white
-          ${disabled ? 'bg-gray-50 cursor-not-allowed' : 'hover:border-gray-400'}
-          ${isOpen ? 'border-blue-500 ring-1 ring-blue-500' : ''}
+          p-2.5 bg-gray-50 border border-gray-300 cursor-pointer
+          flex items-center justify-between gap-2 text-sm text-black rounded-custom shadow-sm
+          ${disabled ? 'bg-disabled cursor-not-allowed' : 'hover:border-gray-400'}
+          ${isOpen ? 'border-info ring-1 ring-blue-500' : ''}
         `}
         onClick={() => !disabled && setIsOpen(!isOpen)}
       >
@@ -228,6 +211,6 @@ const MultiSelect = ({
       )}
     </div>
   );
-};
+});
 
 export default MultiSelect;
