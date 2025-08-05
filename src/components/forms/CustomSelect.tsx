@@ -114,7 +114,7 @@ const MultiSelect = React.forwardRef<HTMLDivElement, IProps>(({
               {getSelectedOptions().slice(0, maxDisplay).map(option => (
                 <span
                   key={option.value}
-                  className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded"
+                  className={`inline-flex items-center gap-1 px-2 py-1 ${ disabled ? 'bg-gray-100 text-gray-400' : 'bg-blue-100 text-blue-800'} text-sm rounded`}
                 >
                   {option.label}
                   {!disabled && (
