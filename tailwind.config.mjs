@@ -7,6 +7,7 @@ export default {
 				main: '#FCFCFC',
 				secondary: '#E4E4E4',
 				contrast: '#001234',
+				
 				info: '#0059FF',
 				success: '#007700',
 				warning: '#E0BA00',
@@ -27,7 +28,9 @@ export default {
 				custom: '15px'
 			},
 			fontSize: {
-				base: '32px'
+				base: '32px',
+				modalTitle: '24px',
+				modalSubtitle: '20px'
 			},
 			gap: {
 				menu: '10%'
