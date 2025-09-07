@@ -1,5 +1,6 @@
+import type { IDiagnosisModel } from '../../models/diagnosis';
 import Results from '../display/Results';
-import Form, { type IDiagnosisModel } from '../forms/Form';
+import Form from '../forms/Form';
 import { useState } from 'react';
 
 
@@ -21,7 +22,7 @@ const NewView = () => {
             </div>
             <div className="rounded-custom border border-borderContrast shadow-xl shadow-secondary max-h-fit min-w-[45%] max-w-[45%]">
                 <div className="p-5">
-                    <Results {...diagnosis}/>
+                    <Results diagnosis={diagnosis.diagnosis}/>
                 </div>
             </div>
         </>

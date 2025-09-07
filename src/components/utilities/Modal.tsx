@@ -1,6 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
-
+import React, { useEffect } from 'react';
 type IModalProps = {
     isOpen: boolean;
     onClose: () => void;
@@ -34,7 +33,7 @@ const Modal = ({ isOpen, onClose, children }: IModalProps) => {
         className="absolute inset-0 bg-black bg-opacity-50 transition-opacity"
         onClick={onClose}
       />
-      <div className="relative bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden">
+      <div className="relative bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 h-[90vh] max-h-[90vh] overflow-hidden flex flex-col">
         {children}
       </div>
     </div>

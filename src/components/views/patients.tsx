@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import type { IOption } from "../forms/CustomSelect"
 import { ApiClientService, EHttpMethods } from '../../../services/ApiClientService';
+import type { IPatientDiagnosisResponse, IPatientDiagnosisSummary } from "../../models/diagnosis"
 import Table from "../table/Table";
 import THead from "../table/THead";
 import Th from "../table/Th";
@@ -9,24 +10,18 @@ import Tr from "../table/Tr";
 import Input from "../forms/Input";
 import useThrottle from "../../hooks/useThrottle";
 import Modal from "../utilities/Modal";
-import ModalTitle from "../modal/modalTitle";
+import ModalTitle from "../modal/ModalTitle";
 import ModalSubtitle from "../modal/ModalSubtitle";
+import Results from "../display/Results";
+import ModalBody from "../modal/ModalBody";
+import ModalHeader from "../modal/ModalHeader";
 
-type IPatient = {
-    personId: string
-    firstName: string
-    lastName: string
-    age: number
-    email: string
-    differential: IOption
-    count: number
-
-}
 
 const PatientsView = () => {
     const [search, setSearch] = useState<string>('');
-    const [patients, setPatients] = useState<IPatient[]>([]);
-    const [selectedPatient, setSelectedPatient] = useState<IPatient | null>(null);
+    const [patients, setPatients] = useState<IPatientDiagnosisSummary[]>([]);
+    const [selectedPatient, setSelectedPatient] = useState<IPatientDiagnosisSummary | null>(null);
+    const [diagnosis, setDiagnosis] = useState<IPatientDiagnosisResponse[]>([]);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     useEffect(() => {
@@ -35,14 +30,14 @@ const PatientsView = () => {
 
     useEffect(() => {
         if (selectedPatient) {
-            fetchPatient(selectedPatient.personId);
+            fetchPatientDiagnosis(selectedPatient.personId);
         }
     }, [selectedPatient]);
     
     const fetchPatientsSummary = async (search?: string) => {
         try {
             const apiClientService = new ApiClientService();
-            const response = await apiClientService.apiRequest<IPatient[]>({
+            const response = await apiClientService.apiRequest<IPatientDiagnosisSummary[]>({
                 url: `/diagnosis/summary`,
                 method: EHttpMethods.GET,
                 params: {
@@ -55,17 +50,18 @@ const PatientsView = () => {
         }
     }
 
-    const fetchPatient = async (id: string) => {
+    const fetchPatientDiagnosis = async (id: string) => {
         try {
             const apiClientService = new ApiClientService();
-            const response = await apiClientService.apiRequest<IPatient[]>({
+            const response = await apiClientService.apiRequest<IPatientDiagnosisResponse[]>({
                 url: `/diagnosis`,
                 method: EHttpMethods.GET,
                 params: {
-                    id
+                    personId: id
                 }
             })
-            setPatients(response)
+            console.log(response)
+            setDiagnosis(response)
         } catch (error) {
             console.error("Error fetching patients:", error);
         }
@@ -148,13 +144,23 @@ const PatientsView = () => {
                 </Table>
             </div>
             <Modal isOpen={isModalOpen} onClose={onCloseModal}>
-                <div className="p-4 flex items-center justify-center gap-4">
-                    <div className="flex flex-col items-start justify-center w-full gap-2">
-                        <ModalTitle>{selectedPatient?.firstName} {selectedPatient?.lastName}</ModalTitle>
-                        <ModalSubtitle>id: <strong> {selectedPatient?.personId} </strong></ModalSubtitle>
-                        <ModalSubtitle>age: <strong> {selectedPatient?.age} </strong></ModalSubtitle>
-                    </div>
-                </div>
+                <ModalHeader isOpen={isModalOpen} onClose={onCloseModal}>
+                    <ModalTitle>{selectedPatient?.firstName} {selectedPatient?.lastName}</ModalTitle>
+                    <ModalSubtitle>id: <strong> {selectedPatient?.personId} </strong></ModalSubtitle>
+                    <ModalSubtitle>age: <strong> {selectedPatient?.age} </strong></ModalSubtitle>
+                </ModalHeader>
+                <ModalBody>
+                    {
+                        diagnosis.map((value, index)=> (
+                            <div className="rounded-custom border border-borderContrast shadow-xl shadow-secondary max-h-fit min-w-[45%] max-w-[45%]">
+                                <div className="p-5">
+                                    <Results key={index} diagnosis={value.diagnosis}/>
+                                </div>
+                            </div>
+                            
+                        ))
+                    }
+                </ModalBody>
             </Modal>
         
         </>

@@ -1,47 +1,12 @@
 import { Controller, useForm } from 'react-hook-form';
 import CustomSelect, { type IOption } from './CustomSelect';
 import { ApiClientService, EHttpMethods } from '../../../services/ApiClientService';
-import type { ESeverity } from '../display/DiagnosticItem';
 import Label from './Label';
+import { defaultValues } from '../../models/diagnosis';
+import type { IDiagnosisBody, IDiagnosisModel } from '../../models/diagnosis';
 
 type IFormProps = {
     handleDiagnosis: any
-}
-
-export type IDiagnosisModel = {
-    id: string
-    diagnosis: IDiagnosisResponse[]
-}
-export type IDiagnosisResponse = {
-    name: string
-    code: string
-    diagnosis: number
-    symptoms: IOption[]
-    differential: IOption
-    severity: ESeverity
-}
-
-type IDiagnosisBody = {
-    firstName: string
-    lastName: string
-    age: number
-    personId: string
-    email: string
-    differential: IOption
-    symptoms: IOption[]
-}
-
-const defaultValues: IDiagnosisBody = {
-    firstName: '',
-    lastName: '',
-    age: 0,
-    personId: '',
-    email: '',
-    differential:{
-        value: 'chestPain',
-        label: 'Dolor de pecho'
-    },
-    symptoms: []
 }
 
 const Form = ({ handleDiagnosis }: IFormProps) => {

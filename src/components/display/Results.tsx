@@ -1,12 +1,13 @@
 import Placeholder, { ETypes } from './Placeholder';
-import type { IDiagnosisModel, IDiagnosisResponse } from '../forms/Form';
 import DiagnosticItem from './DiagnosticItem';
 import SymptomsItem from './SymptomsItem';
 import type { IOption } from '../forms/CustomSelect';
+import type { IPredictedDiagnosis } from '../../models/diagnosis';
 
 
-const Results = ({ diagnosis }: IDiagnosisModel) => {
-    const symptoms = diagnosis?.map((item)=> item.symptoms).reduce((acc, curr)=> acc.concat(curr), [])
+const Results = ({ diagnosis }: { diagnosis: IPredictedDiagnosis[] }) => {
+    console.log({ diagnosis })
+    const symptoms = diagnosis.map((item)=> item.symptoms).reduce((acc, curr)=> acc.concat(curr), [])
     return (
         <div className='w-auto flex flex-col gap-y-8'>
             <ResultSection key={0} title='Diagnóstico' diagnosis={diagnosis} type={ETypes.DIAGNOSTIC}/>
@@ -18,7 +19,7 @@ const Results = ({ diagnosis }: IDiagnosisModel) => {
 
 type IResultSection = {
     title: string
-    diagnosis?: IDiagnosisResponse[]
+    diagnosis?: IPredictedDiagnosis[]
     symptoms?: IOption[]
     type: ETypes
 }
